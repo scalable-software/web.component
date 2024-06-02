@@ -7,18 +7,20 @@
     "inlineSources": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "calculator": ["./src/Calculator.js"]
     },
     "declaration": false
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts"],
+  "include": ["./src/**/*", "./test/unit/**/*"],
+  "exclude": ["node_modules", "dist", "tasks"],
   "typedocOptions": {
-    "excludePrivate": true,
+    "entryPoints": ["./src/*.ts"],
+    "excludePrivate": false,
     "excludeProtected": true,
     "disableSources": true,
     "categorizeByGroup": false,
     "sort": ["static-first", "visibility"],
-    "name": "Web Component",
+    "name": "Reactive Nodes",
     "hideGenerator": true
   }
 }
