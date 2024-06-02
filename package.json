@@ -1,0 +1,19 @@
+{
+  "name": "web.component",
+  "version": "1.0.0",
+  "description": "Web Component Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scalable-Software/web.component.git"
+  },
+  "author": "Scalable.Software",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/Scalable-Software/web.component/issues"
+  },
+  "homepage": "https://github.com/Scalable-Software/web.component#readme"
+}
