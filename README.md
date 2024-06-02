@@ -1,3 +1,5 @@
+![License: CC BY-NC-SA 4.0](https://flat.badgen.net/static/license/CC-BY-NC-SA-4.0/green)
+
 # web.component
 
 Web Component Template
