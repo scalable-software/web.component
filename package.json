@@ -4,7 +4,12 @@
   "description": "Web Component Template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean.test": "node ./tasks/clean.test.mjs",
+    "pretest": "npm run clean.test && tsc --project tsconfig.test.json",
+    "test": "karma start",
+    "posttest": "npm run clean.test",
+    "build": "tsc --project tsconfig.build.json",
+    "document": "npx typedoc --tsconfig tsconfig.test.json"
   },
   "repository": {
     "type": "git",
