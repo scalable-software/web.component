@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/Scalable-Software/web.component/issues"
   },
-  "homepage": "https://github.com/Scalable-Software/web.component#readme"
+  "homepage": "https://github.com/Scalable-Software/web.component#readme",
+  "devDependencies": {
+    "@types/jasmine": "^5.1.4",
+    "jasmine": "^5.1.0",
+    "karma": "^6.4.3",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage-istanbul-instrumenter": "^1.0.4",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-jasmine": "^5.1.0",
+    "karma-spec-reporter": "^0.0.36",
+    "typedoc": "^0.25.13",
+    "typescript": "^5.4.5"
+  }
 }
