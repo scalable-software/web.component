@@ -1,0 +1,82 @@
+/* Default */
+:host {
+  --light-icon-color: rgba(150, 118, 202, 0.4);
+  --light-icon-hover: rgba(150, 118, 202, 0.2);
+  --icon-border-color-on: rgba(150, 118, 202, 0.2);
+  --icon-border-color-off: rgba(85, 0, 169, 0);
+  --icon-border-color-hover: rgba(150, 118, 202, 0.2);
+  --icon-border-shadow: drop-shadow(0px 0px 1px var(--light-icon-hover));
+  --icon-size: 36px;
+  --icon-margin: 2px;
+  --icon-radius: 4px;
+  --icon-border-on: 1px solid var(--icon-border-color-on);
+  --icon-border-off: 1px solid var(--icon-border-color-off);
+  --icon-border-hover: 1px solid var(--icon-border-color-hover);
+  --light-svg-color: rgba(128, 0, 255, 0.8);
+  --light-svg-shadow: rgba(128, 0, 255, 0.2);
+  --svg-shadow: drop-shadow(1px 1px 1px var(--light-svg-shadow));
+  --svg-size: 24px;
+  --svg-margin: 6px;
+  display: inline-block;
+}
+
+/* Visible.NO */
+:host([visible="no"]) {
+  display: none;
+}
+
+.icon {
+  position: absolute;
+  margin: var(--icon-margin);
+  display: inline-block;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  border-radius: var(--icon-radius);
+  border: var(--icon-border-off);
+  filter: var(--icon-border-shadow);
+}
+
+.on {
+  display: none;
+}
+.off {
+  display: inline-block;
+}
+
+/* Fallback size and color defined in SVG Element in HTML Document */
+svg {
+  margin: var(--svg-margin);
+  height: var(--svg-size);
+  width: var(--svg-size);
+  filter: var(--svg-shadow);
+  fill: var(--light-svg-color);
+}
+
+/* Enable hover over style when no touch device is used*/
+@media (hover: hover) {
+  .icon:hover {
+    background: var(--light-icon-hover);
+    border: var(--icon-border-hover);
+  }
+}
+
+/* State.ON */
+:host([state="on"]) .icon {
+  background: var(--light-icon-color);
+  border: var(--icon-border-on);
+}
+
+:host([state="on"]) .on {
+  display: inline-block;
+}
+:host([state="on"]) .off {
+  display: none;
+}
+
+/* State.OFF */
+:host([state="off"]) .off {
+  display: inline-block;
+}
+:host([state="off"]) .on {
+  display: none;
+}
