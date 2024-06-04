@@ -1,8 +1,16 @@
 ![License: CC BY-NC-SA 4.0](https://flat.badgen.net/static/license/CC-BY-NC-SA-4.0/green)
 
-# web.component
+# Web.Component
 
-Web Component Template
+A comprehensive template for creating Web Components with unit testing and api document generation.
+
+## NPM Scripts
+
+Several npm scripts are available:
+
+- `npm run test` - Run unit tests and generate coverage reports in `coverage` folder
+- `npm run document` - Compile API Documentation in `docs` folder
+- `npm run build` - Build the Web Component and copy the output to `dist` folder
 
 > **License**
 >
