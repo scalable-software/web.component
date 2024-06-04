@@ -7,7 +7,7 @@
     "inlineSources": true,
     "baseUrl": "./",
     "paths": {
-      "calculator": ["./src/Calculator.js"]
+      "pin": ["./src/Pin.js"]
     },
     "declaration": false
   },
@@ -20,7 +20,7 @@
     "disableSources": true,
     "categorizeByGroup": false,
     "sort": ["static-first", "visibility"],
-    "name": "Reactive Nodes",
+    "name": "Web Component",
     "hideGenerator": true
   }
 }
