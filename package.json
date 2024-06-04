@@ -8,6 +8,7 @@
     "pretest": "npm run clean.test && tsc --project tsconfig.test.json",
     "test": "karma start",
     "posttest": "npm run clean.test",
+    "prebuild": "node ./tasks/clean.build.mjs",
     "build": "tsc --project tsconfig.build.json",
     "document": "npx typedoc --tsconfig tsconfig.test.json"
   },
