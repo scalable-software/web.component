@@ -1,6 +1,7 @@
 {
   "files.exclude": {
     "**/node_modules": true,
-    "**/coverage": true
+    "**/coverage": true,
+    "**/docs": true
   }
 }
