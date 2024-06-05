@@ -15,12 +15,14 @@
   "exclude": ["node_modules", "dist", "tasks"],
   "typedocOptions": {
     "entryPoints": ["./src/*.ts"],
-    "excludePrivate": false,
+    "excludePrivate": true,
     "excludeProtected": true,
     "disableSources": true,
     "categorizeByGroup": false,
     "sort": ["static-first", "visibility"],
     "name": "Web Component",
+    "plugin": ["typedoc-plugin-merge-modules"],
+    "mergeModulesMergeMode": "module",
     "hideGenerator": true
   }
 }
