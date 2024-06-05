@@ -1,3 +1,13 @@
+/**
+ * @module Base
+ */
+
+/**
+ * Base class for creating custom elements.
+ * Extends HTMLElement and provides lifecycle methods and attribute handling.
+ * Lifecycle methods points to functions which may use function expressions.
+ * @category Base
+ */
 export class Component extends HTMLElement {
   /**
    * When extending `Component`, override attributes.

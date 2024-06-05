@@ -1,3 +1,7 @@
+/**
+ * @module Components
+ */
+
 import {
   Attribute,
   Event,
