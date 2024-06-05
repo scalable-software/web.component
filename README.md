@@ -32,7 +32,11 @@ npm run build
 
 The below steps will guide you through all the unique feature associated with the demo web component, a `pin-button`. As the name implies, the `pin-button` is a simple button that can be switched `on` and `off`. But includes both a declarative and imperative API, event handling, and state management.
 
-1. After successful build, open the `index.html` file in the `demo` folder in the browser
+1. After successful build, run the following command:
+
+```bash
+npm run serve
+```
 
 2. Observe the `pin-button` web component
 
@@ -162,8 +166,8 @@ Lastly, the keep the mail HTML file as lean as possible, an injection script is 
 2. `importmap.build.js` - The import map used by the demo page
 3. `importmap.test.js` - The import map used by the test page
 
-> **License**
->
+## License
+
 > his software and its documentation are released under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0). This means you are free to share, copy, distribute, and transmit the work, and to adapt it, but only under the following conditions:
 >
 > Attribution: You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).
