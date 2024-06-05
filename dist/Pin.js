@@ -66,7 +66,6 @@ export class Pin extends Component {
     }
     set state(state) {
         if (this.state !== state) {
-            console.log("state", state);
             this._state = state;
             this.setAttribute(Attribute.STATE, state);
             state === State.ON &&
