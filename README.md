@@ -92,7 +92,9 @@ pin.state;
 pin.state;
 ```
 
-> **Note**: See the section of Typedoc how to generate and view the complete API documentation for the `pin-button` web component.
+See [API Documentation](https://scalable-software.github.io/web.component/).
+
+> **Note**: See the section of Typedoc how to generate the API documentation.
 
 ### Typescript Compiler Options
 
