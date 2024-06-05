@@ -8,8 +8,8 @@ module.exports = function (config) {
       "/test/": "/base/test/unit/",
     },
     files: [
-      { pattern: "./src/Pin.style.css" },
-      { pattern: "./src/Pin.template.html" },
+      { pattern: "./src/*.css" },
+      { pattern: "./src/*.html" },
       { pattern: "./importmap/inject.js" },
       { pattern: "./importmap/importmap.test.js" },
       { pattern: "./src/**/*.js", type: "module" },

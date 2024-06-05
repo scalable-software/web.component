@@ -1,8 +1,8 @@
 module.exports = function (wallaby) {
   return {
     files: [
-      "src/Pin.style.css",
-      "src/Pin.template.html",
+      "src/*.css",
+      "src/*.html",
       "importmap/inject.js",
       "importmap/importmap.test.js",
       "src/**/*.ts",
@@ -17,7 +17,7 @@ module.exports = function (wallaby) {
         inlineSources: true,
         baseUrl: "./",
         paths: {
-          "@/*": ["src/*"],
+          pin: ["./src/Pin.js"],
         },
       }),
     },
