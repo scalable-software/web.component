@@ -2,6 +2,19 @@ export const defineComponent = (tag: string, component) => {
   !customElements.get(tag) && customElements.define(tag, component);
 };
 
+export const loadTemplate = async (templateUrl) => {
+  try {
+    const response = await fetch(templateUrl);
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const template = doc.querySelector("template");
+    document.body.appendChild(template);
+  } catch (error) {
+    console.warn("Error fetching external template:", error);
+  }
+};
+
 export const appendTemplate = (id, template?) => {
   let HTMLTemplate: HTMLTemplateElement = document.createElement("template");
   HTMLTemplate.innerHTML = template ?? "";
