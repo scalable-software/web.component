@@ -38,6 +38,18 @@ export class Component extends HTMLElement {
    */
   constructor() {
     super();
+    if (this.Template) {
+      this._addShadowRoot();
+      this._loadTemplate(this.Template);
+    }
+  }
+
+  /**
+   * Optional readonly accessor with HTML Template id to use if template is required
+   * @category Configuration
+   */
+  public get Template() {
+    return undefined;
   }
 
   /**
@@ -64,6 +76,23 @@ export class Component extends HTMLElement {
     const handler = this._attributeHandlers[name];
     handler && handler(newValue);
   }
+
+  /**
+   * Not required by all components.
+   * Only needed if the component needs its own HTML template.
+   */
+  protected _addShadowRoot = (): ShadowRoot =>
+    (this.root = this.attachShadow({ mode: "closed" }));
+
+  /**
+   * Not required by all components.
+   * Only needed if the component has its own Layout and Style.
+   * @hidden
+   */
+  protected _loadTemplate = (id: string) => {
+    const template = document.getElementById(id) as HTMLTemplateElement;
+    this.root.appendChild(template.content.cloneNode(true));
+  };
 
   protected _attributeHandlers = {};
 

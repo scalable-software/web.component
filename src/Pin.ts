@@ -54,8 +54,14 @@ export class Pin extends Component {
    */
   constructor() {
     super();
-    this._addShadowRoot();
-    this._loadTemplate("pin-button");
+  }
+
+  /**
+   * Optional readonly accessor with HTML Template id to use if template is required
+   * @category Configuration
+   */
+  public get Template() {
+    return Pin.Tag;
   }
 
   /**
@@ -102,24 +108,6 @@ export class Pin extends Component {
   protected _attributeHandlers = {
     [Attribute.STATE]: (value: string) => (this.state = <States>value),
     [Attribute.VISIBLE]: (value: string) => (this.visible = <Visibility>value),
-  };
-
-  /**
-   * Not required by all components.
-   * Only needed if the component needs its own HTML template.
-   */
-  protected _addShadowRoot = (): ShadowRoot =>
-    (this.root = this.attachShadow({ mode: "closed" }));
-
-  /**
-   * Not required by all components.
-   * Only needed if the component has its own Layout and Style.
-   * @hidden
-   */
-  protected _loadTemplate = (id?: string) => {
-    id = id || Pin.Tag;
-    const template = document.getElementById(id) as HTMLTemplateElement;
-    this.root.appendChild(template.content.cloneNode(true));
   };
 
   /**
