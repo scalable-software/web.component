@@ -1,0 +1,95 @@
+{
+  "Component": "Pin",
+  "Tag": "pin-button",
+  "Namespace": "Pin",
+  "Description": "The Pin component is a button that can be turned on or off.",
+  "state": {
+    "template": {
+      "type": "string",
+      "description": "The it of the HTML template used by the pin.",
+      "default": "pin-button",
+      "isAttribute": false
+    },
+    "visible": {
+      "type": "string",
+      "description": "Indicates whether the pin is visible.",
+      "values": ["yes", "no", null],
+      "default": "yes",
+      "isAttribute": true
+    },
+    "state": {
+      "type": "string",
+      "description": "Indicates the current state of the pin.",
+      "values": ["on", "off"],
+      "default": "off",
+      "isAttribute": true
+    }
+  },
+  "operations": {
+    "show": {
+      "description": "Shows the directory component.",
+      "parameters": [],
+      "returns": "void"
+    },
+    "hide": {
+      "description": "Hides the directory component.",
+      "parameters": [],
+      "returns": "void"
+    },
+    "on": {
+      "description": "Turns the pin on.",
+      "parameters": [],
+      "returns": "void"
+    },
+    "off": {
+      "description": "Turns the pin off.",
+      "parameters": [],
+      "returns": "void"
+    },
+    "toggle": {
+      "description": "Toggles the pin state.",
+      "parameters": [],
+      "returns": "void"
+    }
+  },
+  "events": {
+    "onShow": {
+      "description": "Triggered when the directory is shown.",
+      "parameters": []
+    },
+    "onHide": {
+      "description": "Triggered when the directory is hidden.",
+      "parameters": []
+    },
+    "onOn": {
+      "description": "Triggered when the pin is turned on.",
+      "parameters": []
+    },
+    "onOff": {
+      "description": "Triggered when the pin is turned off.",
+      "parameters": []
+    }
+  },
+  "composition": {
+    "pin": {
+      "description": "The Pin Component",
+      "contains": ["icon"],
+      "type": "template"
+    },
+    "icon": {
+      "description": "The main container of the pin component.",
+      "contains": ["on", "off"],
+      "type": "div"
+    },
+    "on": {
+      "description": "The SVG icon used for on state.",
+      "contains": ["path"],
+      "type": "svg"
+    },
+    "off": {
+      "description": "The SVG icon used for off state.",
+      "contains": ["path"],
+      "type": "svg"
+    }
+  }
+}
