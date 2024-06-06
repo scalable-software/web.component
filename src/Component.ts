@@ -29,9 +29,9 @@ export class Component extends HTMLElement {
   }
 
   /**
-   * The shadow root of the component exposed as a property for convenience
+   * @hidden
    */
-  public root: ShadowRoot;
+  private _root: ShadowRoot;
 
   /**
    * @hidden
@@ -42,6 +42,14 @@ export class Component extends HTMLElement {
       this._addShadowRoot();
       this._loadTemplate(this.Template);
     }
+  }
+
+  /**
+   * The shadow root of the component exposed as a readonly accessor.
+   * @category Configuration
+   */
+  public get root(): ShadowRoot {
+    return this._root;
   }
 
   /**
@@ -82,7 +90,7 @@ export class Component extends HTMLElement {
    * Only needed if the component needs its own HTML template.
    */
   protected _addShadowRoot = (): ShadowRoot =>
-    (this.root = this.attachShadow({ mode: "closed" }));
+    (this._root = this.attachShadow({ mode: "closed" }));
 
   /**
    * Not required by all components.
