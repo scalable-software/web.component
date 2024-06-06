@@ -10,10 +10,15 @@ import {
   Visible,
   Visibility,
   States,
-  Handler,
 } from "./Pin.meta.js";
 
 import { Component } from "./Component.js";
+
+/**
+ * Event handler signature
+ * @hidden
+ */
+export type Handler = (...args: any[]) => void;
 
 /**
  * A button that can be toggled on and off

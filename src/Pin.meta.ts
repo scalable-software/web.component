@@ -61,12 +61,6 @@ export const Event = {
 export type Events = (typeof Event)[keyof typeof Event];
 
 /**
- * Event handler signature
- * @hidden
- */
-export type Handler = (...args: any[]) => void;
-
-/**
  * @category Metadata: Behavior
  * @enum
  */
