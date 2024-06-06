@@ -1,3 +1,6 @@
+/**
+ * @module Components
+ */
 import { Attribute, Event, Gesture, State, Visible, } from "./Pin.meta.js";
 import { Component } from "./Component.js";
 /**
@@ -35,8 +38,13 @@ export class Pin extends Component {
      */
     constructor() {
         super();
-        this._addShadowRoot();
-        this._loadTemplate("pin-button");
+    }
+    /**
+     * Optional readonly accessor with HTML Template id to use if template is required
+     * @category State
+     */
+    get template() {
+        return Pin.Tag;
     }
     /**
      * Get and Sets the visibility of the button
@@ -82,20 +90,6 @@ export class Pin extends Component {
         [Attribute.VISIBLE]: (value) => (this.visible = value),
     };
     /**
-     * Not required by all components.
-     * Only needed if the component needs its own HTML template.
-     */
-    _addShadowRoot = () => (this.root = this.attachShadow({ mode: "closed" }));
-    /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
-     * @hidden
-     */
-    _loadTemplate = (id) => {
-        const template = document.getElementById(id);
-        this.root.appendChild(template.content.cloneNode(true));
-    };
-    /**
      * Called by the connectedCallback prototypical method
      * @hidden
      */
@@ -115,7 +109,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onhide(handler) {
+    set onHide(handler) {
         this.addEventListener(Event.ONHIDE, handler);
     }
     /**
@@ -123,7 +117,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onshow(handler) {
+    set onShow(handler) {
         this.addEventListener(Event.ONSHOW, handler);
     }
     /**
@@ -131,7 +125,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onon(handler) {
+    set onOn(handler) {
         this.addEventListener(Event.ONON, handler);
     }
     /**
@@ -139,7 +133,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onoff(handler) {
+    set onOff(handler) {
         this.addEventListener(Event.ONOFF, handler);
     }
     /**

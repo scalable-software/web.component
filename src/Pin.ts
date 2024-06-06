@@ -63,9 +63,9 @@ export class Pin extends Component {
 
   /**
    * Optional readonly accessor with HTML Template id to use if template is required
-   * @category Configuration
+   * @category State
    */
-  public get Template() {
+  public get template() {
     return Pin.Tag;
   }
 
@@ -140,7 +140,7 @@ export class Pin extends Component {
    * @event
    * @category Events
    */
-  public set onhide(handler: Handler) {
+  public set onHide(handler: Handler) {
     this.addEventListener(Event.ONHIDE, handler);
   }
 
@@ -149,7 +149,7 @@ export class Pin extends Component {
    * @event
    * @category Events
    */
-  public set onshow(handler: Handler) {
+  public set onShow(handler: Handler) {
     this.addEventListener(Event.ONSHOW, handler);
   }
 
@@ -158,7 +158,7 @@ export class Pin extends Component {
    * @event
    * @category Events
    */
-  public set onon(handler: Handler) {
+  public set onOn(handler: Handler) {
     this.addEventListener(Event.ONON, handler);
   }
 
@@ -167,7 +167,7 @@ export class Pin extends Component {
    * @event
    * @category Events
    */
-  public set onoff(handler: Handler) {
+  public set onOff(handler: Handler) {
     this.addEventListener(Event.ONOFF, handler);
   }
 

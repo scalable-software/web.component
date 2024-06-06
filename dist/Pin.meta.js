@@ -1,4 +1,7 @@
 /**
+ * @module Components
+ */
+/**
  * HTML Attributes available to set
  * @category Metadata: Attributes
  * @enum

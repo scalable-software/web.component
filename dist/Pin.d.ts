@@ -1,5 +1,13 @@
-import { Attribute, Visibility, States, Handler } from "./Pin.meta.js";
+/**
+ * @module Components
+ */
+import { Attribute, Visibility, States } from "./Pin.meta.js";
 import { Component } from "./Component.js";
+/**
+ * Event handler signature
+ * @hidden
+ */
+export type Handler = (...args: any[]) => void;
 /**
  * A button that can be toggled on and off
  * @category Components
@@ -31,6 +39,11 @@ export declare class Pin extends Component {
      */
     constructor();
     /**
+     * Optional readonly accessor with HTML Template id to use if template is required
+     * @category State
+     */
+    get template(): string;
+    /**
      * Get and Sets the visibility of the button
      * @category State
      */
@@ -49,17 +62,6 @@ export declare class Pin extends Component {
         state: (value: string) => States;
         visible: (value: string) => Visibility;
     };
-    /**
-     * Not required by all components.
-     * Only needed if the component needs its own HTML template.
-     */
-    protected _addShadowRoot: () => ShadowRoot;
-    /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
-     * @hidden
-     */
-    protected _loadTemplate: (id: string) => void;
     /**
      * Called by the connectedCallback prototypical method
      * @hidden
@@ -80,25 +82,25 @@ export declare class Pin extends Component {
      * @event
      * @category Events
      */
-    set onhide(handler: Handler);
+    set onHide(handler: Handler);
     /**
      * Triggered via `.show()`
      * @event
      * @category Events
      */
-    set onshow(handler: Handler);
+    set onShow(handler: Handler);
     /**
      * Triggered via `.on()`
      * @event
      * @category Events
      */
-    set onon(handler: Handler);
+    set onOn(handler: Handler);
     /**
      * Triggered via `.off()`
      * @event
      * @category Events
      */
-    set onoff(handler: Handler);
+    set onOff(handler: Handler);
     /**
      * Change the visibility of the button to `no`
      * @category Operations
