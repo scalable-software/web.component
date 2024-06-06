@@ -23,6 +23,7 @@ export class Component extends HTMLElement {
   /**
    * List of attributes in DOM to observe.
    * This list is generated from the Attributes object's values.
+   * @category Hooks
    */
   public static get observedAttributes(): string[] {
     return Object.values(this.Attributes);
@@ -38,15 +39,13 @@ export class Component extends HTMLElement {
    */
   constructor() {
     super();
-    if (this.Template) {
-      this._addShadowRoot();
-      this._loadTemplate(this.Template);
-    }
+    this.template && this._addTemplate(this.template);
   }
 
   /**
    * The shadow root of the component exposed as a readonly accessor.
    * @category Configuration
+   * @hidden
    */
   public get root(): ShadowRoot {
     return this._root;
@@ -56,13 +55,15 @@ export class Component extends HTMLElement {
    * Optional readonly accessor with HTML Template id to use if template is required
    * @category Configuration
    */
-  public get Template() {
+  /* istanbul ignore next */
+  public get template() {
     return undefined;
   }
 
   /**
    * This connectedCallback is invoked each time the element is connected to the DOM.
    * It is commonly used for setting up initial DOM structure, adding event listeners, or fetching external data.
+   * @category Hooks
    */
   connectedCallback() {
     this._addEventListeners();
@@ -71,6 +72,7 @@ export class Component extends HTMLElement {
   /**
    * The disconnected callback is called when the element is removed from the DOM.
    * It is used for cleanup tasks like removing event listeners or resetting state.
+   * @category Hooks
    */
   disconnectedCallback() {
     this._removeEventListeners();
@@ -79,6 +81,7 @@ export class Component extends HTMLElement {
   /**
    * The attributeChangedCallback is called when one of the observed attributes is added, removed, or changed.
    * It is used to react to attribute changes and update the element accordingly.
+   * @category Hooks
    */
   attributeChangedCallback(name: string, oldValue: any, newValue: any) {
     const handler = this._attributeHandlers[name];
@@ -88,6 +91,7 @@ export class Component extends HTMLElement {
   /**
    * Not required by all components.
    * Only needed if the component needs its own HTML template.
+   * @hidden
    */
   protected _addShadowRoot = (): ShadowRoot =>
     (this._root = this.attachShadow({ mode: "closed" }));
@@ -100,6 +104,16 @@ export class Component extends HTMLElement {
   protected _loadTemplate = (id: string) => {
     const template = document.getElementById(id) as HTMLTemplateElement;
     this.root.appendChild(template.content.cloneNode(true));
+  };
+
+  /**
+   * Not required by all components.
+   * Only needed if the component has its own Layout and Style.
+   * @hidden
+   */
+  protected _addTemplate = (id: string) => {
+    this._addShadowRoot();
+    this._loadTemplate(id);
   };
 
   protected _attributeHandlers = {};
