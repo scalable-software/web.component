@@ -116,7 +116,8 @@ export class Pin extends Component {
    * Only needed if the component has its own Layout and Style.
    * @hidden
    */
-  protected _loadTemplate = (id: string) => {
+  protected _loadTemplate = (id?: string) => {
+    id = id || Pin.Tag;
     const template = document.getElementById(id) as HTMLTemplateElement;
     this.root.appendChild(template.content.cloneNode(true));
   };
