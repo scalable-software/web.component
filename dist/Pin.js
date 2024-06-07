@@ -109,7 +109,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onHide(handler) {
+    set onhide(handler) {
         this.addEventListener(Event.ONHIDE, handler);
     }
     /**
@@ -117,7 +117,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onShow(handler) {
+    set onshow(handler) {
         this.addEventListener(Event.ONSHOW, handler);
     }
     /**
@@ -125,7 +125,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onOn(handler) {
+    set onon(handler) {
         this.addEventListener(Event.ONON, handler);
     }
     /**
@@ -133,7 +133,7 @@ export class Pin extends Component {
      * @event
      * @category Events
      */
-    set onOff(handler) {
+    set onoff(handler) {
         this.addEventListener(Event.ONOFF, handler);
     }
     /**

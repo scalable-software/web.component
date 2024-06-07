@@ -82,25 +82,25 @@ export declare class Pin extends Component {
      * @event
      * @category Events
      */
-    set onHide(handler: Handler);
+    set onhide(handler: Handler);
     /**
      * Triggered via `.show()`
      * @event
      * @category Events
      */
-    set onShow(handler: Handler);
+    set onshow(handler: Handler);
     /**
      * Triggered via `.on()`
      * @event
      * @category Events
      */
-    set onOn(handler: Handler);
+    set onon(handler: Handler);
     /**
      * Triggered via `.off()`
      * @event
      * @category Events
      */
-    set onOff(handler: Handler);
+    set onoff(handler: Handler);
     /**
      * Change the visibility of the button to `no`
      * @category Operations

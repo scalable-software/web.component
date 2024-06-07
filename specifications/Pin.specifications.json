@@ -53,19 +53,19 @@
     }
   },
   "events": {
-    "onShow": {
+    "onshow": {
       "description": "Triggered when the directory is shown.",
       "parameters": []
     },
-    "onHide": {
+    "onhide": {
       "description": "Triggered when the directory is hidden.",
       "parameters": []
     },
-    "onOn": {
+    "onon": {
       "description": "Triggered when the pin is turned on.",
       "parameters": []
     },
-    "onOff": {
+    "onoff": {
       "description": "Triggered when the pin is turned off.",
       "parameters": []
     }

@@ -64,7 +64,7 @@ describe("Given Pin is defined in custom element registry", () => {
         let onhide: jasmine.Spy;
         beforeEach(() => {
           onhide = jasmine.createSpy("onhide");
-          pin.onHide = onhide;
+          pin.onhide = onhide;
           pin.hide();
         });
         it("then pin.visible is Visible.NO", () => {
@@ -80,7 +80,7 @@ describe("Given Pin is defined in custom element registry", () => {
           let onshow: jasmine.Spy;
           beforeEach(() => {
             onshow = jasmine.createSpy("onshow");
-            pin.onShow = onshow;
+            pin.onshow = onshow;
             pin.show();
           });
           it("then pin.visible is Visible.YES", () => {
@@ -96,7 +96,7 @@ describe("Given Pin is defined in custom element registry", () => {
         let onon: jasmine.Spy;
         beforeEach(() => {
           onon = jasmine.createSpy("onon");
-          pin.onOn = onon;
+          pin.onon = onon;
           pin.on();
         });
         it("then pin.state is State.ON", () => {
@@ -112,7 +112,7 @@ describe("Given Pin is defined in custom element registry", () => {
           let onoff: jasmine.Spy;
           beforeEach(() => {
             onoff = jasmine.createSpy("onoff");
-            pin.onOff = onoff;
+            pin.onoff = onoff;
             pin.off();
           });
           it("then pin.state is State.OFF", () => {
@@ -130,7 +130,7 @@ describe("Given Pin is defined in custom element registry", () => {
         let onon: jasmine.Spy;
         beforeEach(() => {
           onon = jasmine.createSpy("onon");
-          pin.onOn = onon;
+          pin.onon = onon;
           pin.toggle();
         });
         it("then pin.state is State.ON", () => {
@@ -146,7 +146,7 @@ describe("Given Pin is defined in custom element registry", () => {
           let onoff: jasmine.Spy;
           beforeEach(() => {
             onoff = jasmine.createSpy("onoff");
-            pin.onOff = onoff;
+            pin.onoff = onoff;
             pin.toggle();
           });
           it("then pin.state is State.OFF", () => {
@@ -164,7 +164,7 @@ describe("Given Pin is defined in custom element registry", () => {
         let onon: jasmine.Spy;
         beforeEach(() => {
           onon = jasmine.createSpy("onon");
-          pin.onOn = onon;
+          pin.onon = onon;
           pin.click();
         });
         it("then pin.state is State.ON", () => {

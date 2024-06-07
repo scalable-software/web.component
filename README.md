@@ -51,15 +51,15 @@ const pin = document.querySelector("pin-button");
 5. Create an onon event listener for the web component
 
 ```javascript
-const onOn = () => {
-  console.log("onOn triggered");
+const onon = () => {
+  console.log("onon triggered");
 };
 ```
 
 6. Add the event listener to the web component
 
 ```javascript
-pin.onOn = onOn;
+pin.onon = onon;
 ```
 
 7. Switch the pin on using the imperative API
