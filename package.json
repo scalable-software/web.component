@@ -1,8 +1,17 @@
 {
-  "name": "web.component",
+  "name": "@scalable-software/web.component",
   "version": "1.0.0",
   "description": "Web Component Template",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/Pin.js"
+    }
+  },
+  "types": "dist/Pin.d.ts",
+  "module": "dist/Pin.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "clean.test": "node ./tasks/clean.test.mjs",
     "pretest": "npm run clean.test && tsc --project tsconfig.test.json",
@@ -16,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Scalable-Software/web.component.git"
+    "url": "git+https://github.com/scalable-software/web.component.git"
   },
   "author": "Scalable.Software",
   "license": "CC-BY-NC-SA-4.0",
   "bugs": {
-    "url": "https://github.com/Scalable-Software/web.component/issues"
+    "url": "https://github.com/scalable-software/web.component/issues"
   },
-  "homepage": "https://github.com/Scalable-Software/web.component#readme",
+  "homepage": "https://github.com/scalable-software/web.component#readme",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
     "http-server": "^14.1.1",
