@@ -20,7 +20,7 @@
     "prebuild": "node ./tasks/clean.build.mjs",
     "build": "tsc --project tsconfig.build.json",
     "preserve": "npm run build",
-    "serve": "http-server . -o /demo/index.html ",
+    "serve": "web-dev-server --open /demo/index.html",
     "document": "npx typedoc --tsconfig tsconfig.test.json"
   },
   "repository": {
@@ -35,7 +35,7 @@
   "homepage": "https://github.com/scalable-software/web.component#readme",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
-    "http-server": "^14.1.1",
+    "@web/dev-server": "^0.0.6",
     "jasmine": "^5.1.0",
     "karma": "^6.4.3",
     "karma-chrome-launcher": "^3.2.0",
