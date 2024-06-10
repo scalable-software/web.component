@@ -288,6 +288,8 @@ The important options to note are:
 
 ### Unit Testing
 
+Unit test are designed to test the web component based on the defined specifications.
+
 This template enables both realtime and manual unit testing. Realtime unit testing is achieved using `wallaby` and manual unit testing is done using the `karma` test runner with `jasmine` assertion library. Both `wallaby` and `karma` configuration file is located at the root of the project: `wallaby.js`, `karma.conf.js`.
 
 To manually run the unit tests, and generate coverage reports in the `coverage` folder, use the following command:
