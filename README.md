@@ -100,6 +100,162 @@ See [API Documentation](https://scalable-software.github.io/web.component/).
 
 > **Note**: See the section of Typedoc how to generate the API documentation.
 
+### Web Component Specifications
+
+A component is built according to a set of specifications, see the content in the `specifications` folder for an example. The specifications are divided into the following categories:
+
+1. Metadata
+2. State
+3. Operations
+4. Events
+5. Composition
+
+Below in an overview of each section and a reference to the `pin-button` web component:
+
+#### Component Metadata
+
+This section defines the name of the component, the tag name, and namespace to use when applicable
+
+```json
+{
+  "Component": "Pin",
+  "Tag": "pin-button",
+  "Namespace": "Pin",
+  "Description": "The Pin component is a button that can be turned on or off."
+}
+```
+
+#### Component State
+
+Component state is implemented using a combination of private properties and public getters and setter methods. Some properties are also defined as attributes to enable declarative API.
+
+For example, the specifications refer to a `visible` state:
+
+```json
+{
+  "state": {
+    "visible": {
+      "type": "string",
+      "description": "Indicates whether the pin is visible.",
+      "values": ["yes", "no", null],
+      "default": "yes",
+      "isAttribute": true
+    }
+  }
+}
+```
+
+Note the `null` value in the `values` array. This is used to indicate that the attribute can be removed from the html element.
+
+here is the extract of the implementation of the `visible` state:
+
+```typescript
+  private _visible: Visibility = Visible.YES;
+
+  public get visible(): Visibility {
+    return <Visibility>this.getAttribute(Attribute.VISIBLE) ?? this._visible;
+  }
+  public set visible(visible: Visibility) {
+    visible = visible || Visible.YES;
+    if (this.visible !== visible) {
+      this._visible = visible;
+      visible == Visible.YES && this.removeAttribute(Attribute.VISIBLE);
+      visible == Visible.YES &&
+        this.dispatchEvent(new CustomEvent(Event.ONSHOW, { detail: visible }));
+      visible == Visible.NO && this.setAttribute(Attribute.VISIBLE, visible);
+      visible == Visible.NO &&
+        this.dispatchEvent(new CustomEvent(Event.ONHIDE, { detail: visible }));
+    }
+  }
+```
+
+#### Component Operations
+
+Component operations are implemented using public methods and used to enable the imperative API. In essence these public methods are thin wrappers which use the available setters to change the state of the component.
+
+For example, the specifications refer to a `on` operation:
+
+```json
+{
+  "operations": {
+    "on": {
+      "description": "Turns the pin on.",
+      "parameters": [],
+      "returns": "void"
+    }
+  }
+}
+```
+
+Here is the extract of the implementation of the `on` operation:
+
+```typescript
+  public on = () => (this.state = State.ON);
+```
+
+#### Component Events
+
+Component events are implemented using the `CustomEvent` constructor. The `CustomEvent` constructor is used to create a new event object which can be dispatched using the `dispatchEvent` method. Events are dispatched when the state of the component changes inside the setter methods.
+
+For example, the specifications refer to a `onon` event:
+
+```json
+{
+  "events": {
+    "onon": {
+      "description": "Triggered when the pin is turned on.",
+      "parameters": []
+    }
+  }
+}
+```
+
+Here is the extract of the implementation of the `onon` event:
+
+```typescript
+  // Event Registration
+  public set onon(handler: Handler) {
+    this.addEventListener(Event.ONON, handler);
+  }
+```
+
+The `onon` event is dispatched in the `setter` of the `state` property:
+
+```typescript
+state === State.ON &&
+  this.dispatchEvent(new CustomEvent(Event.ONON, { detail: { state } }));
+state === State.OFF &&
+  this.dispatchEvent(new CustomEvent(Event.ONOFF, { detail: { state } }));
+```
+
+#### Component Composition
+
+Component composition is implemented using the `HTMLTemplateElement` and `ShadowRoot` API. The `HTMLTemplateElement` is used to define the layout of the component and the `ShadowRoot` is used to attach the template to the component.
+
+For example, the specifications refer to the `Pin.template.html` file:
+
+```json
+{
+  "composition": {
+    "on": {
+      "description": "The SVG icon used for on state.",
+      "contains": ["path"],
+      "type": "svg"
+    }
+  }
+}
+```
+
+Here is the extract of the implementation of the `on` element in the composition:
+
+```html
+<svg class="on" height="24px" width="24px" viewBox="0 0 20 20" fill="#212121">
+  <path
+    d="M2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.896 7.60309L4.01834 8.75415C3.35177 9.02078 3.17498 9.88209 3.68262 10.3897L6.29289 13L3 16.2929V17H3.70711L7 13.7071L9.61027 16.3174C10.1179 16.825 10.9792 16.6482 11.2459 15.9817L12.3969 13.104L17.1464 17.8536C17.3417 18.0488 17.6583 18.0488 17.8536 17.8536C18.0488 17.6583 18.0488 17.3417 17.8536 17.1464L2.85355 2.14645ZM11.6276 12.3347L10.3174 15.6103L4.38973 9.68263L7.66531 8.3724L11.6276 12.3347ZM12.9565 10.7127C12.9294 10.7263 12.9026 10.7403 12.8761 10.7548L13.6202 11.4989L16.8622 9.87793C18.0832 9.26743 18.3473 7.64015 17.382 6.67486L13.3251 2.61804C12.3599 1.65275 10.7326 1.91683 10.1221 3.13783L8.5011 6.37977L9.24523 7.1239C9.25971 7.09739 9.27373 7.07059 9.28728 7.04349L11.0165 3.58504C11.3218 2.97454 12.1354 2.8425 12.618 3.32514L16.6749 7.38197C17.1575 7.86461 17.0255 8.67826 16.415 8.98351L12.9565 10.7127Z"
+  />
+</svg>
+```
+
 ### Typescript Compiler Options
 
 Two different typescript configuration are defined: `tsconfig.build.json` and `tsconfig.test.json`. The typescript complier options of the two files are largely the same. The main difference is that type declarations are included two configuration files are largely the same. Below is an overview of the compiler options used:
