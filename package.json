@@ -1,6 +1,6 @@
 {
   "name": "@scalable.software/web.component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Web Component Template",
   "exports": {
     ".": {
@@ -9,9 +9,6 @@
   },
   "types": "dist/Index.d.ts",
   "module": "dist/Index.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "clean.test": "node ./tasks/clean.test.mjs",
     "pretest": "npm run clean.test && tsc --project tsconfig.test.json",
