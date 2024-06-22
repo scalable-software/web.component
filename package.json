@@ -2,6 +2,11 @@
   "name": "@scalable.software/web.component",
   "version": "1.0.7",
   "description": "Web Component Template",
+  "keywords": [
+    "web",
+    "component",
+    "template"
+  ],
   "exports": {
     ".": {
       "import": "./dist/Index.js"
