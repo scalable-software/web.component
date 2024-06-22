@@ -1,16 +1,16 @@
 {
-  "name": "@scalable-software/web.component",
-  "version": "1.0.1",
+  "name": "@scalable.software/web.component",
+  "version": "1.0.2",
   "description": "Web Component Template",
   "exports": {
     ".": {
-      "import": "./dist/Pin.js"
+      "import": "./dist/Index.js"
     }
   },
-  "types": "dist/Pin.d.ts",
-  "module": "dist/Pin.js",
+  "types": "dist/Index.d.ts",
+  "module": "dist/Index.js",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "scripts": {
     "clean.test": "node ./tasks/clean.test.mjs",
@@ -21,7 +21,9 @@
     "build": "tsc --project tsconfig.build.json",
     "preserve": "npm run build",
     "serve": "web-dev-server --open /demo/index.html",
-    "document": "npx typedoc --tsconfig tsconfig.test.json"
+    "document": "npx typedoc --tsconfig tsconfig.test.json",
+    "prepublish": "npm run build",
+    "publish": "npm publish"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,7 @@
   "homepage": "https://github.com/scalable-software/web.component#readme",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
-    "@web/dev-server": "^0.0.6",
+    "@web/dev-server": "^0.4.5",
     "jasmine": "^5.1.0",
     "karma": "^6.4.3",
     "karma-chrome-launcher": "^3.2.0",
