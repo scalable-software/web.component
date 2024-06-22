@@ -1,6 +1,6 @@
 {
   "name": "@scalable.software/web.component",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Web Component Template",
   "exports": {
     ".": {
