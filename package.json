@@ -1,6 +1,6 @@
 {
   "name": "@scalable.software/web.component",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Web Component Template",
   "exports": {
     ".": {
@@ -19,8 +19,7 @@
     "preserve": "npm run build",
     "serve": "web-dev-server --open /demo/index.html",
     "document": "npx typedoc --tsconfig tsconfig.test.json",
-    "prepublish": "npm run build",
-    "publish": "npm publish"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
