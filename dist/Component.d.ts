@@ -41,9 +41,14 @@ export declare class Component extends HTMLElement {
      */
     get template(): any;
     /**
-     * This connectedCallback is invoked each time the element is connected to the DOM.
-     * It is commonly used for setting up initial DOM structure, adding event listeners, or fetching external data.
-     * @category Hooks
+     * Optional readonly access with CSS style to use if style is required
+     * @category Configuration
+     */
+    get css(): string;
+    /**
+     *
+     *
+     * @memberof Component
      */
     connectedCallback(): void;
     /**
@@ -65,15 +70,17 @@ export declare class Component extends HTMLElement {
      */
     protected _addShadowRoot: () => ShadowRoot;
     /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
      * @hidden
      */
     protected _loadTemplate: (id: string) => void;
     /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
      * @hidden
+     **/
+    protected _loadStyle: () => void;
+    /**
+     * Not required by all components.
+     * Only needed if the component has its own Layout.
+     *  @hidden
      */
     protected _addTemplate: (id: string) => void;
     protected _attributeHandlers: {};

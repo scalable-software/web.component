@@ -54,9 +54,17 @@ export class Component extends HTMLElement {
         return undefined;
     }
     /**
-     * This connectedCallback is invoked each time the element is connected to the DOM.
-     * It is commonly used for setting up initial DOM structure, adding event listeners, or fetching external data.
-     * @category Hooks
+     * Optional readonly access with CSS style to use if style is required
+     * @category Configuration
+     */
+    /* istanbul ignore next */
+    get css() {
+        return new URL("./style.css", import.meta.url).href;
+    }
+    /**
+     *
+     *
+     * @memberof Component
      */
     connectedCallback() {
         this._addEventListeners();
@@ -85,8 +93,6 @@ export class Component extends HTMLElement {
      */
     _addShadowRoot = () => (this._root = this.attachShadow({ mode: "closed" }));
     /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
      * @hidden
      */
     _loadTemplate = (id) => {
@@ -94,12 +100,23 @@ export class Component extends HTMLElement {
         this.root.appendChild(template.content.cloneNode(true));
     };
     /**
-     * Not required by all components.
-     * Only needed if the component has its own Layout and Style.
      * @hidden
+     **/
+    _loadStyle = () => {
+        const url = this.css ?? "./style.css";
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = new URL(url, import.meta.url).href;
+        this._root.appendChild(link);
+    };
+    /**
+     * Not required by all components.
+     * Only needed if the component has its own Layout.
+     *  @hidden
      */
     _addTemplate = (id) => {
         this._addShadowRoot();
+        this._loadStyle();
         this._loadTemplate(id);
     };
     _attributeHandlers = {};

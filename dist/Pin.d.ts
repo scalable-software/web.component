@@ -44,6 +44,11 @@ export declare class Pin extends Component {
      */
     get template(): string;
     /**
+     * Readonly accessor with CSS Style Sheet path when using a Template
+     * @category State
+     */
+    get css(): string;
+    /**
      * Get and Sets the visibility of the button
      * @category State
      */

@@ -47,6 +47,13 @@ export class Pin extends Component {
         return Pin.Tag;
     }
     /**
+     * Readonly accessor with CSS Style Sheet path when using a Template
+     * @category State
+     */
+    get css() {
+        return "./Pin.style.css";
+    }
+    /**
      * Get and Sets the visibility of the button
      * @category State
      */
