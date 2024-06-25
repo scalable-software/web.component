@@ -1,9 +1,4 @@
-import {
-  defineComponent,
-  loadTemplate,
-  removeTemplate,
-  appendComponent,
-} from "./Helper.js";
+import { defineComponent, removeTemplate, appendComponent } from "./Helper.js";
 
 import { Attribute, Visible, State } from "../../src/Pin.meta.js";
 
@@ -21,12 +16,49 @@ describe("Given Pin imported", () => {
     it("then Pin.Attributes static getter exist", () => {
       expect(Pin.Attributes).toBeDefined();
     });
+    // Static Methods Availability
+    it("then Pin.loadTemplate static method exist", () => {
+      expect(Pin.loadTemplate).toBeDefined();
+    });
     // Static Properties Value
     it("then Pin.Tag is 'pin-button'", () => {
       expect(Pin.Tag).toBe("pin-button");
     });
     it("then Pin.Attributes is Attribute", () => {
       expect(Pin.Attributes).toEqual(Attribute);
+    });
+  });
+});
+
+describe("Given Pin.loadTemplate method", () => {
+  it("and no template is in html document", () => {
+    const template = document.querySelector("template");
+    expect(template).toBeNull();
+  });
+  describe("when Pin.loadTemplate(filename) is called with valid filename", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      const template = document.querySelector("template");
+      template && template.remove();
+    });
+    it("then an template is inserted into the html document", async () => {
+      const template = document.querySelector("template");
+      expect(template).not.toBeNull();
+    });
+  });
+  describe("when Pin.loadTemplate(filename) is called with invalid filename", () => {
+    let errorThrown: boolean = false;
+    beforeEach(async () => {
+      try {
+        await Pin.loadTemplate("invalid.html");
+      } catch (error) {
+        errorThrown = true;
+      }
+    });
+    it("then an error was thrown", async () => {
+      expect(errorThrown).toBe(true);
     });
   });
 });
@@ -40,7 +72,7 @@ describe("Given Pin is defined in custom element registry", () => {
   });
   describe("and HTML Template added to DOM", () => {
     beforeEach(async () => {
-      await loadTemplate("../src/Pin.template.html");
+      await Pin.loadTemplate("Pin.template.html");
     });
     afterEach(() => {
       removeTemplate(Pin.Tag);
