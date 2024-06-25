@@ -2,7 +2,17 @@
 
 # Web.Component
 
-A comprehensive template for creating Web Components with unit testing and api document generation.
+This repository contains a comprehensive boilerplate template for creating Web Components with unit testing and api document generation. The template is designed to demonstrate the use of modern web technologies such as HTML, CSS, and TypeScript to create modular, reusable, and testable web components. The template includes the following features:
+
+1. **Separation of Concerns**: Demonstrates the principle of Separation of Concerns (SoC) by using HTML for structure, CSS for presentation, and TypeScript for behavior.
+2. **State Management**: Implements state management using private properties and public getters and setters.
+3. **Imperative and Declarative API**: Provides both imperative and declarative APIs for interacting with the web component.
+4. **Event Handling**: Demonstrates event handling by dispatching custom events when the state of the component changes.
+5. **Import Maps**: Demonstrates the use of import maps to resolve JavaScript module specifiers to their corresponding files or URLs.
+6. **Unit Testing**: Includes unit tests for the web component using the Jasmine assertion library and Karma test runner.
+7. **API Documentation**: Generates API documentation for the web component using the Typedoc documentation generator.
+
+Before we dive into the details of all the features, let's first go through the installation and demonstration of the web component.
 
 ## Installation
 
@@ -30,7 +40,7 @@ npm run build
 
 ## Usage
 
-The below steps will guide you through all the unique feature associated with the demo web component, a `pin-button`. As the name implies, the `pin-button` is a simple button that can be switched `on` and `off`. But includes both a declarative and imperative API, event handling, and state management.
+The below steps will guide you through all the unique feature associated with the demo web component, a `pin-button`. As the name implies, the `pin-button` is a simple button that can be switched `on` and `off`.
 
 1. After successful build, run the following command:
 
@@ -38,7 +48,7 @@ The below steps will guide you through all the unique feature associated with th
 npm run serve
 ```
 
-2. Observe the `pin-button` web component
+2. Observe the `pin-button` web component in the browser
 
 3. Open the chrome developer tools and select the console
 
@@ -68,7 +78,7 @@ pin.onon = onon;
 pin.on();
 ```
 
-8. Observe the visual changes in the browser and the console
+8. Observe the visual changes in the browser and the console output
 
 9. Select the elements tab in the chrome developer tools and inspect the html
 
@@ -96,9 +106,50 @@ pin.state;
 pin.state;
 ```
 
-See [API Documentation](https://scalable-software.github.io/web.component/).
+See [API Documentation](https://scalable-software.github.io/web.component/) for details of all state, operations and events implemented.
 
 > **Note**: See the section of Typedoc how to generate the API documentation.
+
+Now that you have successfully interacted with the `pin-button` web component, let's dive into the details of the features that make this boilerplate template unique.
+
+## Separation of Concerns
+
+In modern web development, the principle of Separation of Concerns (SoC) is fundamental to creating maintainable, scalable, and easily understandable code. This principle is elegantly demonstrated through the use of HTML, CSS, and TypeScript, each serving a distinct purpose while seamlessly working together to create robust web components. Below, we outline how each technology contributes to this principle:
+
+### HTML Template: Structure
+
+The technology used to define the layout of the web component is [HTML templates](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). HTML templates are HTML fragments that are loaded into the DOM but not rendered immediately. Web component typically clones the HTML template and insert that inside the shadow DOM of a web component after which it is rendered. This allows developers to define the structure of the web component without cluttering the main HTML file with complex markup.
+
+With reference to this boilerplate:
+
+1. The `Pin.template.html` in the `src` folder contains the layout of the `Pin` component.
+2. This template is loaded into the dom using a public `loadTemplate(filename)` static method in the base `Component` class, where the filename in this case is `Pin.template.html`. (See the `index.js` file in the `demo` folder which illustrate how this method is used to load the template into the DOM.)
+3. This keep things simple, by default the template id is the same as the web component tag, see the public `template` getter in the `Pin` class. This id is then used by the protected `_loadTemplate` instance method on the base `Component` class to clone and inserted the template into the shadow DOM of the web component.
+
+### CSS: Presentation
+
+CSS (Cascading Style Sheets) takes charge of the presentation aspect, dictating how the structured HTML elements should appear on the screen. This includes layouts, colors, fonts, and animations. CSS is also used to update visual changes based on changes to web component attributes. CSS's role in Separation of Concerns is to decouple the visual styling from the content structure, allowing for design changes without altering the underlying HTML. This separation not only makes the styling more manageable but also enhances the flexibility and reusability of the components.
+
+With reference to this boilerplate:
+
+1. The `Pin.style.css` in the `src` folder contains the styling for the `Pin` component.
+2. The public `css` getter in the `Pin` class contains the `css` filename and is used by the protected `loadStyle` method on the base `Component` class to insert a `link` element into the shadow DOM of the web component which points to the `css` file.
+
+### TypeScript: Behavior
+
+TypeScript, a superset of JavaScript, adds type safety and advanced object-oriented features to the component's behavior. It controls how the component reacts to user interactions, fetches data, and manipulates the DOM. By isolating the behavioral logic in TypeScript, developers can create more predictable and maintainable codebase. TypeScript's static typing and compile-time checks further contribute to the robustness and scalability of the component.
+
+Fundamentally, the behavior of a web component can be grouped into three parts:
+
+1. **State**: Implements state management using private properties and public getters and setters.
+2. **Operations**: Provides both imperative and declarative APIs for interacting with the web component.
+3. **Events**: Demonstrates event handling by dispatching custom events when the state of the component changes.
+
+With reference to this boilerplate, see the `Pin` class in the `src` folder which contains three sections described above.
+
+## Development Workflow
+
+This boilerplate was developed using a specific workflow that ensures the web component is modular, testable, and well-documented. As a first step, a business analyst defined the needed specifications for the web component. These specifications were then used to guide the development of the web component. The development process followed the steps outlined below:
 
 ### Web Component Specifications
 
@@ -258,7 +309,7 @@ Here is the extract of the implementation of the `on` element in the composition
 
 ### Typescript Compiler Options
 
-Two different typescript configuration are defined: `tsconfig.build.json` and `tsconfig.test.json`. The typescript complier options of the two files are largely the same. The main difference is that type declarations are included two configuration files are largely the same. Below is an overview of the compiler options used:
+Two different typescript configuration are defined: `tsconfig.build.json` and `tsconfig.test.json`. The typescript complier options of the two files are largely the same. Below is an overview of the compiler options used:
 
 ```json
 {
@@ -271,7 +322,7 @@ Two different typescript configuration are defined: `tsconfig.build.json` and `t
     "outDir": "./dist/",
     "baseUrl": "./",
     "paths": {
-      "pin": ["./src/Pin.js"]
+      "pin": ["./src/Index.js"]
     }
   },
   "include": ["./src/**/*"]
@@ -308,12 +359,6 @@ To generate the API documentation, in the docs folder, use the following command
 npm run document
 ```
 
-### HTML Templates
-
-This template also demonstrate the use of HTML templates which is part of the Web Component technology stack. HTML template is used to define the web component layout and also includes a reference to an external `css` file used for styling and micro animations. See the `Pin.template.html` and `Pin.css` files in the `src` folder for more details.
-
-Again to keep the main HTML file as lean as possible, HTML Templates are loaded using a `loadTemplate` utility. The `loadTemplate` utility is used in both the demo and unit tests.
-
 ### Importmaps
 
 Import maps are a browser feature that enables developers to define how JavaScript module specifiers are resolved to their corresponding files or URLs, allowing for custom mapping of module names to paths and facilitating easier management of dependencies. By using import maps, developers can therefore easily switch between a local file, an NPM installed package or even a CDN hosted file. Also, Import maps is what enables the use of ESM compiled TypeScript to work in the browser without the use of any bundler.
@@ -323,6 +368,41 @@ Lastly, the keep the mail HTML file as lean as possible, an injection script is 
 1. `inject.js` - The script that injects the import map into the HTML document
 2. `importmap.build.js` - The import map used by the demo page
 3. `importmap.test.js` - The import map used by the test page
+
+### Publishing
+
+The beauty of combining HTML, CSS, and TypeScript lies in their ability to be bundled together into a single, installable package. This approach not only adheres to the Separation of Concerns but also simplifies the distribution and reuse of components across different projects.
+
+With reference to this boilerplate, the web component is bundled and published as a NPM package. The `package.json` file contains the necessary scripts and configurations to build, test, and publish the web component. The `dist` folder contains the compiled JavaScript files as well as a copy of the HTML Template and CSS Files.
+
+A github workflow is setup to automatically publish the web component to NPM when a new release is created. The workflow is defined in the `.github/workflows/publish.yml` file.
+
+Before creating a new release in GitHub, ensure the following steps are completed:
+
+1. Determine the type of version bump (major, minor, patch)
+2. Run one of the following commands to bump the version in the `package.json` file:
+
+```bash
+npm version major
+npm version minor
+npm version patch
+```
+
+3. Given you have used the above command, a tag will automatically be created in the repository, else you can create a tag manually using the following command:
+
+```bash
+git tag -a v1.0.0 -m "Version 1.0.0"
+```
+
+4. Push the tag to the remote repository:
+
+```bash
+git push origin v1.0.0
+```
+
+5. Create a new release in GitHub and the workflow will automatically publish the web component to NPM.
+
+> Note: a manual publication to NPM is required for the first release when using a scoped package on the free tier of NPM: `npm publish --access public`.
 
 ## License
 
