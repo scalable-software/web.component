@@ -38,3 +38,12 @@ export const appendComponent = <T>(tag, attributes?: any): T => {
   document.body.appendChild(component);
   return component;
 };
+
+export const hasSetter = (obj, propName) => {
+  while (obj) {
+    let descriptor = Object.getOwnPropertyDescriptor(obj, propName);
+    if (descriptor) return !!descriptor.set;
+    obj = Object.getPrototypeOf(obj);
+  }
+  return false;
+};

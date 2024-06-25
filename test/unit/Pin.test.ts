@@ -1,4 +1,9 @@
-import { defineComponent, removeTemplate, appendComponent } from "./Helper.js";
+import {
+  defineComponent,
+  removeTemplate,
+  appendComponent,
+  hasSetter,
+} from "./Helper.js";
 
 import {
   Pin,
@@ -11,28 +16,46 @@ describe("Given Pin imported", () => {
   it("then Pin exist", () => {
     expect(Pin).toBeDefined();
   });
-  describe("When Pin exist", () => {
-    // Static Properties Availability
-    it("then Pin.Tag static getter exist", () => {
-      expect(Pin.Tag).toBeDefined();
-    });
-    it("then Pin.Attributes static getter exist", () => {
-      expect(Pin.Attributes).toBeDefined();
-    });
-    // Static Methods Availability
-    it("then Pin.loadTemplate static method exist", () => {
-      expect(Pin.loadTemplate).toBeDefined();
-    });
-    // Static Properties Value
-    it("then Pin.Tag is 'pin-button'", () => {
-      expect(Pin.Tag).toBe("pin-button");
-    });
-    it("then Pin.Attributes is Attribute", () => {
-      expect(Pin.Attributes).toEqual(Attribute);
-    });
+});
+
+/**
+ * Static Properties Existence
+ */
+describe("Given Pin exist", () => {
+  it("then Pin.Tag static getter exist", () => {
+    expect(Pin.Tag).toBeDefined();
+  });
+  it("then Pin.Attributes static getter exist", () => {
+    expect(Pin.Attributes).toBeDefined();
   });
 });
 
+/**
+ * Static Properties Value
+ */
+describe("Given Pin.Tag static getter exists", () => {
+  it("then Pin.Tag is 'pin-button'", () => {
+    expect(Pin.Tag).toBe("pin-button");
+  });
+});
+describe("Given Pin.Attributes static getter exists", () => {
+  it("then Pin.Attributes is Attribute", () => {
+    expect(Pin.Attributes).toBe(Attribute);
+  });
+});
+
+/**
+ * Static Methods Existence
+ */
+describe("When Pin exist", () => {
+  it("then Pin.loadTemplate static method exist", () => {
+    expect(Pin.loadTemplate).toBeDefined();
+  });
+});
+
+/**
+ * Static Methods Behavior
+ */
 describe("Given Pin.loadTemplate method", () => {
   it("and no template is in html document", () => {
     const template = document.querySelector("template");
@@ -66,6 +89,9 @@ describe("Given Pin.loadTemplate method", () => {
   });
 });
 
+/**
+ * Component State Existence
+ */
 describe("Given Pin is defined in custom element registry", () => {
   beforeEach(() => {
     defineComponent(Pin.Tag, Pin);
@@ -80,8 +106,40 @@ describe("Given Pin is defined in custom element registry", () => {
     afterEach(() => {
       removeTemplate(Pin.Tag);
     });
-    it("then a HTML Template exist in DOM", () => {
-      expect(document.getElementsByTagName("template")).toHaveSize(1);
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
+      it("then pin.visible property exist", () => {
+        expect(pin.visible).toBeDefined();
+      });
+      it("then pin.state property exist", () => {
+        expect(pin.state).toBeDefined();
+      });
+    });
+  });
+});
+
+/**
+ * Component State Default Value
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
     });
     describe("when Pin added to DOM", () => {
       let pin: Pin;
@@ -91,21 +149,41 @@ describe("Given Pin is defined in custom element registry", () => {
       afterEach(() => {
         pin.remove();
       });
-      // Component State Availability
-      it("then pin.visible property exist", () => {
-        expect(pin.visible).toBeDefined();
-      });
-      it("then pin.state property exist", () => {
-        expect(pin.state).toBeDefined();
-      });
-      // Component State Default Value
       it("Then pin.visible is Visible.YES", () => {
         expect(pin.visible).toEqual(Visible.YES);
       });
       it("Then pin.state is State.OFF", () => {
         expect(pin.state).toEqual(State.OFF);
       });
-      // Component Operation Availability
+    });
+  });
+});
+
+/**
+ * Component Operation Existence
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
+    });
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
       it("then pin.show() method exist", () => {
         expect(pin.show).toBeDefined();
       });
@@ -121,7 +199,35 @@ describe("Given Pin is defined in custom element registry", () => {
       it("then pin.toggle() method exist", () => {
         expect(pin.toggle).toBeDefined();
       });
-      // Component Operation Behavior
+    });
+  });
+});
+
+/**
+ * Component Operation Behavior
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
+    });
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
       describe("and pin.hide()", () => {
         beforeEach(() => {
           pin.hide();
@@ -226,7 +332,76 @@ describe("Given Pin is defined in custom element registry", () => {
           expect(pin.getAttribute(Attribute.STATE)).toEqual(State.ON);
         });
       });
-      // Component Event Dispatching Behavior
+    });
+  });
+});
+
+/**
+ * Component Event Existence
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
+    });
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
+      it("then pin.onhide setter exist", () => {
+        expect(hasSetter(pin, "onhide")).toBeTrue();
+      });
+      it("then pin.onshow setter exist", () => {
+        expect(hasSetter(pin, "onshow")).toBeTrue();
+      });
+      it("then pin.onon setter exist", () => {
+        expect(hasSetter(pin, "onon")).toBeTrue();
+      });
+      it("then pin.onoff setter exist", () => {
+        expect(hasSetter(pin, "onoff")).toBeTrue();
+      });
+    });
+  });
+});
+
+/**
+ * Component Event Dispatching Behavior
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
+    });
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
       describe("and pin.hide()", () => {
         let onhide: jasmine.Spy;
         beforeEach(() => {
@@ -293,7 +468,35 @@ describe("Given Pin is defined in custom element registry", () => {
           });
         });
       });
-      // Component Gesture Binding Behavior
+    });
+  });
+});
+
+/**
+ * User Gesture Behavior
+ */
+describe("Given Pin is defined in custom element registry", () => {
+  beforeEach(() => {
+    defineComponent(Pin.Tag, Pin);
+  });
+  it("then custom element registry should contain Pin", () => {
+    expect(customElements.get(Pin.Tag)).toBe(Pin);
+  });
+  describe("and HTML Template added to DOM", () => {
+    beforeEach(async () => {
+      await Pin.loadTemplate("Pin.template.html");
+    });
+    afterEach(() => {
+      removeTemplate(Pin.Tag);
+    });
+    describe("when Pin added to DOM", () => {
+      let pin: Pin;
+      beforeEach(() => {
+        pin = appendComponent<Pin>(Pin.Tag);
+      });
+      afterEach(() => {
+        pin.remove();
+      });
       describe("and user clicks on pin", () => {
         let onon: jasmine.Spy;
         beforeEach(() => {
