@@ -44,7 +44,7 @@ export declare class Component extends HTMLElement {
      * Optional readonly access with CSS style to use if style is required
      * @category Configuration
      */
-    get css(): string;
+    get css(): any;
     /**
      *
      *

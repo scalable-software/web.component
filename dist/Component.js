@@ -59,7 +59,7 @@ export class Component extends HTMLElement {
      */
     /* istanbul ignore next */
     get css() {
-        return new URL("./style.css", import.meta.url).href;
+        return undefined;
     }
     /**
      *
@@ -103,10 +103,11 @@ export class Component extends HTMLElement {
      * @hidden
      **/
     _loadStyle = () => {
-        const url = this.css ?? "./style.css";
+        if (!this.css)
+            return;
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = new URL(url, import.meta.url).href;
+        link.href = new URL(this.css, import.meta.url).href;
         this._root.appendChild(link);
     };
     /**
