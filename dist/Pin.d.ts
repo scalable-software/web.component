@@ -13,6 +13,7 @@ export type Handler = (...args: any[]) => void;
  * @category Components
  */
 export declare class Pin extends Component {
+    static loadTemplate: (filename: string) => Promise<void>;
     /**
      * The tag name of the component
      * @category Configuration

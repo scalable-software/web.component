@@ -102,6 +102,7 @@ export class Component extends HTMLElement {
     /**
      * @hidden
      **/
+    /* istanbul ignore next */
     _loadStyle = () => {
         if (!this.css)
             return;
