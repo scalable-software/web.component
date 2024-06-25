@@ -90,28 +90,6 @@ export class Pin extends Component {
         }
     }
     /**
-     * List operations to perform for selected attributes being observed in the DOM.
-     */
-    _attributeHandlers = {
-        [Attribute.STATE]: (value) => (this.state = value),
-        [Attribute.VISIBLE]: (value) => (this.visible = value),
-    };
-    /**
-     * Called by the connectedCallback prototypical method
-     * @hidden
-     */
-    _addEventListeners = () => this.addEventListener(Gesture.CLICK, this._handleClick);
-    /**
-     * Called by the disconnectedCallback prototypical method
-     * @hidden
-     */
-    _removeEventListeners = () => this.removeEventListener(Gesture.CLICK, this._handleClick);
-    /**
-     * Handles the click event
-     * @hidden
-     */
-    _handleClick = (event) => this.toggle();
-    /**
      * Triggered via `.hide()`
      * @event
      * @category Events
@@ -143,6 +121,28 @@ export class Pin extends Component {
     set onoff(handler) {
         this.addEventListener(Event.ONOFF, handler);
     }
+    /**
+     * Handles the click event
+     * @hidden
+     */
+    _handleClick = (event) => this.toggle();
+    /**
+     * List operations to perform for selected attributes being observed in the DOM.
+     */
+    _attributeHandlers = {
+        [Attribute.STATE]: (value) => (this.state = value),
+        [Attribute.VISIBLE]: (value) => (this.visible = value),
+    };
+    /**
+     * Called by the connectedCallback prototypical method
+     * @hidden
+     */
+    _addEventListeners = () => this.addEventListener(Gesture.CLICK, this._handleClick);
+    /**
+     * Called by the disconnectedCallback prototypical method
+     * @hidden
+     */
+    _removeEventListeners = () => this.removeEventListener(Gesture.CLICK, this._handleClick);
     /**
      * Change the visibility of the button to `no`
      * @category Operations

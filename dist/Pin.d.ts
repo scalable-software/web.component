@@ -61,28 +61,6 @@ export declare class Pin extends Component {
     get state(): States;
     set state(state: States);
     /**
-     * List operations to perform for selected attributes being observed in the DOM.
-     */
-    protected _attributeHandlers: {
-        state: (value: string) => States;
-        visible: (value: string) => Visibility;
-    };
-    /**
-     * Called by the connectedCallback prototypical method
-     * @hidden
-     */
-    protected _addEventListeners: () => void;
-    /**
-     * Called by the disconnectedCallback prototypical method
-     * @hidden
-     */
-    protected _removeEventListeners: () => void;
-    /**
-     * Handles the click event
-     * @hidden
-     */
-    private _handleClick;
-    /**
      * Triggered via `.hide()`
      * @event
      * @category Events
@@ -106,6 +84,28 @@ export declare class Pin extends Component {
      * @category Events
      */
     set onoff(handler: Handler);
+    /**
+     * Handles the click event
+     * @hidden
+     */
+    private _handleClick;
+    /**
+     * List operations to perform for selected attributes being observed in the DOM.
+     */
+    protected _attributeHandlers: {
+        state: (value: string) => States;
+        visible: (value: string) => Visibility;
+    };
+    /**
+     * Called by the connectedCallback prototypical method
+     * @hidden
+     */
+    protected _addEventListeners: () => void;
+    /**
+     * Called by the disconnectedCallback prototypical method
+     * @hidden
+     */
+    protected _removeEventListeners: () => void;
     /**
      * Change the visibility of the button to `no`
      * @category Operations
