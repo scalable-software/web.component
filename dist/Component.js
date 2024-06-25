@@ -8,6 +8,22 @@
  * @category Base
  */
 export class Component extends HTMLElement {
+    static loadTemplate = async (filename) => {
+        try {
+            const url = new URL(filename, import.meta.url).href;
+            const response = await fetch(url);
+            if (!response.ok)
+                throw new Error(`${response.status}`);
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            const template = doc.querySelector("template");
+            document.body.appendChild(template);
+        }
+        catch (error) {
+            throw error;
+        }
+    };
     /**
      * When extending `Component`, override attributes.
      * Only attributes defined the Attributes object will be observed in DOM

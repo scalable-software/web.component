@@ -8,6 +8,7 @@
  * @category Base
  */
 export declare class Component extends HTMLElement {
+    static loadTemplate: (filename: string) => Promise<void>;
     /**
      * When extending `Component`, override attributes.
      * Only attributes defined the Attributes object will be observed in DOM
