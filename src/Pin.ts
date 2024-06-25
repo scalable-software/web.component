@@ -25,23 +25,6 @@ export type Handler = (...args: any[]) => void;
  * @category Components
  */
 export class Pin extends Component {
-  public static loadTemplate = async (filename: string) => {
-    try {
-      const url = new URL(filename, import.meta.url).href;
-      const response = await fetch(url);
-
-      if (!response.ok) throw new Error(`${response.status}`);
-
-      const html = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      const template = doc.querySelector("template");
-      document.body.appendChild(template);
-    } catch (error) {
-      throw error;
-    }
-  };
-
   /**
    * The tag name of the component
    * @category Configuration
