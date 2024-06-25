@@ -1,5 +1,4 @@
-import { loadTemplate } from "./loader.js";
-await loadTemplate("../dist/Pin.template.html");
-
 import { Pin } from "pin";
+
+await Pin.loadTemplate("Pin.template.html");
 customElements.define(Pin.Tag, Pin);
