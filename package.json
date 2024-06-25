@@ -21,6 +21,7 @@
     "posttest": "npm run clean.test",
     "prebuild": "node ./tasks/clean.build.mjs",
     "build": "tsc --project tsconfig.build.json",
+    "postbuild": "node ./tasks/copy.build.mjs",
     "preserve": "npm run build",
     "serve": "web-dev-server --open /demo/index.html",
     "document": "npx typedoc --tsconfig tsconfig.test.json",
