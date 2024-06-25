@@ -116,6 +116,7 @@ export class Component extends HTMLElement {
   /**
    * @hidden
    **/
+  /* istanbul ignore next */
   protected _loadStyle = () => {
     if (!this.css) return;
     const link = document.createElement("link");
