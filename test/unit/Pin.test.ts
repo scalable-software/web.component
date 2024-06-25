@@ -1,8 +1,11 @@
 import { defineComponent, removeTemplate, appendComponent } from "./Helper.js";
 
-import { Attribute, Visible, State } from "../../src/Pin.meta.js";
-
-import { Pin } from "pin";
+import {
+  Pin,
+  Attribute,
+  Visible,
+  State,
+} from "@scalable.software/web.component";
 
 describe("Given Pin imported", () => {
   it("then Pin exist", () => {

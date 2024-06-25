@@ -6,7 +6,7 @@
 inject(
   {
     imports: {
-      pin: "./src/Index.js",
+      "@scalable.software/web.component": "./src/Index.js",
     },
   },
   "importmap"

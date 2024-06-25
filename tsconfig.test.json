@@ -7,7 +7,7 @@
     "inlineSources": true,
     "baseUrl": "./",
     "paths": {
-      "pin": ["./src/Pin.js"]
+      "@scalable.software/web.component": ["./src/Index.js"]
     },
     "declaration": false
   },
