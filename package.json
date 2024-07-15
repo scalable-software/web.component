@@ -39,7 +39,7 @@
   "homepage": "https://github.com/scalable-software/web.component#readme",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
-    "@web/dev-server": "^0.4.5",
+    "@web/dev-server": "^0.4.6",
     "jasmine": "^5.1.0",
     "karma": "^6.4.3",
     "karma-chrome-launcher": "^3.2.0",
